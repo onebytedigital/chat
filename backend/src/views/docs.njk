@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <title>N&C Brasil - AT&M | Documentação API v1</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/demo.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <style>
+    html {
+      scroll-behavior: smooth !important;
+    }
+  </style>
+  <body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+      <nav class="navbar bg-primary navbar-default navbar-fixed-top">
+        <div class="brand">
+          <a href="index.html"><img src="/img/logo.webp" width="100" alt="N&C Brasil" class="img-responsive logo"></a>
+        </div>
+        <div class="container-fluid">
+          <div class="navbar-btn">
+            <button type="button" class="btn-toggle-fullwidth">
+              <i class="lnr lnr-arrow-left-circle"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div id="sidebar-nav" class="sidebar pt-3">
+        <div class="sidebar-scroll">
+          <nav>
+            <ul class="nav">
+              <li>
+                <a href="#" class="">
+                  <i class="lnr lnr-home"></i>
+                  <span>Dashboard</span></a>
+              </li>
+              <li>
+                <a href="#subPages" data-toggle="collapse" class="collapsed">
+                  <i class="lnr lnr-file-empty"></i>
+                  <span>Autenticação</span>
+                  <i class="icon-submenu lnr lnr-chevron-left"></i>
+                </a>
+                <div id="subPages" class="collapse ">
+                  <ul class="nav">
+                    <li>
+                      <a href="#auth" class="">Basic &nbsp; <span class="label label-success">ANY</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              {% for api in apiRoutes %}
+                <li>
+                  <a href="{{api.href}}" data-toggle="collapse" class="collapsed">
+                    <i class="lnr lnr-file-empty"></i>
+                    <span>{{api.label}}</span>
+                    <i class="icon-submenu lnr lnr-chevron-left"></i>
+                  </a>
+                  <div id="{{api.id}}" class="collapse ">a
+                  <ul class="nav">
+                      {% for route in api.routes %}
+                        <li>
+                          <a href="{{route.href}}" class="">{{route.label}} &nbsp; <span class="label label-success">{{route.method}}</span></a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="main">
+        <div class="main-content">
+          <div class="container-fluid">
+            <h3>
+              <img src="/img/mercado-livre.png" style="width: 250px;"/>
+            </h3>
+            <h3 class="page-title">N&C Brasil - Integração Mercado Livre - Documentação API &nbsp; <span class="label label-success">V1.0</span></h3>
+            <h4 class="page-title">Introdução à API de Integração com a AT&M Seguradora</h4>
+            <h4 class="page-title">Bem-vindo à API de Integração com a AT&M Seguradora! Nossa API é um poderoso conjunto de ferramentas projetadas para simplificar e agilizar a integração do seu sistema com os serviços da AT&M Seguradora. Se você está buscando uma solução para conectar seus aplicativos, plataformas ou sistemas de terceiros aos produtos e serviços oferecidos pela AT&M, você está no lugar certo.</h4>
+            {# <h4 class="page-title">Nossa API de Integração com a AT&M Seguradora fornece acesso seguro e confiável a uma variedade de recursos e funcionalidades, permitindo que você ofereça aos seus clientes uma experiência aprimorada e personalizada no setor de seguros. Com a nossa API, você poderá automatizar processos, realizar consultas em tempo real, enviar e receber informações de seguros e muito mais.</h4>
+            <h4 class="page-title">Além disso, nossa API oferece uma documentação detalhada, que facilita o processo de desenvolvimento e integração. Você encontrará informações claras e concisas sobre os endpoints disponíveis, os parâmetros necessários, as respostas esperadas e exemplos práticos para auxiliá-lo em cada etapa do processo.</h4>
+            <h4 class="page-title">Para garantir a segurança dos dados, nossa API de Integração com a AT&M Seguradora utiliza autenticação avançada, com chaves de API e tokens de acesso. Isso garante que apenas solicitações autorizadas tenham acesso aos recursos protegidos da AT&M e que os dados de seus clientes sejam mantidos seguros.</h4>
+            <h4 class="page-title">Estamos empolgados em oferecer a você essa poderosa ferramenta de integração. Nossa equipe de suporte está pronta para ajudá-lo em qualquer dúvida ou problema que você possa encontrar durante o processo de integração. Juntos, podemos criar soluções inovadoras e personalizadas para atender às necessidades dos seus clientes.</h4> #}
+            <h4 class="page-title">Comece agora mesmo a explorar a API de Integração com a AT&M Seguradora e aproveite todos os benefícios que ela pode oferecer ao seu negócio no setor de seguros. Estamos ansiosos para ajudá-lo a ter sucesso nessa jornada de integração e colaborar para o crescimento e a excelência dos seus serviços.</h4>
+            <div class="row" id="auth">
+              <div class="row">
+                <div class="col-12" style="margin-left: 20px;">
+                  <h2>Autenticação</h2>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="panel">
+                  <div class="panel-heading">
+                    <h3 class="page-title">Autenticação (Basic Auth)</h3>
+                    <p>Para autenticar na API você precisa apenas passar na requisição usuário/senha como Basic Auth, assim a própria aplicação verificará se o acesso foi permitido, assim não é preciso renovar a toen, deixando tudo mais rápido e prático</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="panel">
+                  <div class="panel-body">
+                    <pre>
+curl -X POST "https://hub.necbrasil.com.br/${ENDPOINT}" \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -u "username:password" \
+  -d '{}'
+                    </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% for api in apiRoutes %}
+              <div class="row">
+                <div class="col-12" style="margin-left: 20px;">
+                  <h2>{{api.label}}</h2>
+                </div>
+              </div>
+              {% for route in api.routes %}
+                <div class="row" id="{{route.id}}">
+                  <div class="col-md-7">
+                    <div class="panel">
+                      <div class="panel-heading">
+                        <h3 class="page-title">{{route.label}} &nbsp; <span class="label label-success">{{route.method}}</span></h3>
+                        <p>URL: {{route.route}}</pre>
+                      </div>
+                      <div class="panel-body">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Parâmetro</th>
+                              <th>Tipo</th>
+                              <th>Posição</th>
+                              <th>#</th>
+                              <th>Descrição</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for param in route.params %}
+                              <tr>
+                                <td>{{param.name}}</td>
+                                <td>
+                                  <code>{{param.type}}</code>
+                                </td>
+                                <td>
+                                  <code>{{param.placement}}</code>
+                                </td>
+                                <td>
+                                  <code>{{param.severity}}</code>
+                                </td>
+                                <td>{{param.description}}</td>
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="panel">
+                      <div class="panel-body">
+                        <pre>{{route.example}}</pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <footer>
+        <div class="container-fluid">
+          <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('pre code').each(function (i, block) {
+          hljs.highlightBlock(block);
+        });
+      });
+    </script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/scripts/klorofil-common.js"></script>
+  </body>
+
+</html>
